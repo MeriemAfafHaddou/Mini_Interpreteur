@@ -1,3 +1,3 @@
 public interface IEvaluable {
-    public boolean evaluer();
+    public Double evaluer();
 }

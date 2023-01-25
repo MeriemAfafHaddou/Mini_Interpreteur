@@ -1,10 +1,8 @@
-import java.beans.Expression;
-import java.util.HashMap;
-
-abstract class Interpreteur {
-  public void  evaluate(){
+abstract class Creator {
+  public double  evaluate(){
       IEvaluable eva= createEvaluable();
-      eva.evaluer();
+      return eva.evaluer();
   }
+
   public abstract IEvaluable createEvaluable();
 }
