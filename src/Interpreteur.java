@@ -4,9 +4,11 @@ import java.util.HashMap;
 public class Interpreteur {
     public HashMap<String,Double> table;
     public GestionSaisie gestion;
-    public ICommande cmd;
+    public Commande cmd;
     public IEvaluable eval;
-    public void interpreter(){}
+    public void interpreter(){
+
+    }
     public Variable creerVariable(String nom, Double valeur){
         return null;
     }
