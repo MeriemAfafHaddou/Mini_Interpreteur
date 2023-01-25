@@ -13,11 +13,5 @@ public class Variable implements IEvaluable {
         this.valeur=value;
         table.put(nom,value);
     }
-    public Variable(){};
-    public void SetValue(double value){
-        this.valeur=value;
-    }
-    public void SetNom(String str){
-        this.nom=str;
-    }
+
 }
