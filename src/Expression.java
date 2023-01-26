@@ -20,7 +20,6 @@ public class Expression implements IEvaluable {
     @Override
     public double evaluer(){
         double a=calculer();
-        System.out.println(children);
         double result=0;
         for(IEvaluable child:children){
             result+=child.evaluer();
@@ -62,8 +61,23 @@ public class Expression implements IEvaluable {
                 double AnalyserExpression() {
                     double x = analyserTerm();
                     for (;;) { // infinte loop until return
-                        if      (check('+')) x += analyserTerm(); // addition
-                        else if (check('-')) x -= analyserTerm(); // soustraction
+                        if      (check('+')) {
+                            x += analyserTerm();
+                            String nom= "y"+Integer.toString(y);
+                            y++;
+                            Variable v = new Variable(nom,x);
+                            children.add(v);
+                            System.out.println(x);
+
+                        } // addition
+                        else if (check('-')) {
+                            x -= analyserTerm();
+                            String nom= "y"+Integer.toString(y);
+                            y++;
+                            Variable v = new Variable(nom,x);
+                            children.add(v);
+                            System.out.println(x);
+                        } // soustraction
                         else return x;
                     }
 
@@ -72,10 +86,23 @@ public class Expression implements IEvaluable {
                 double analyserTerm() {
                     double x = analyserFacteur();
                     for (;;) {
-                        if      (check('*')) x *= analyserFacteur(); // multiplication
+                        if      (check('*')) {
+                            x *= analyserFacteur();
+                            String nom= "y"+Integer.toString(y);
+                            y++;
+                            Variable v = new Variable(nom,x);
+                            children.add(v);
+                            System.out.println(x);
+
+                        } // multiplication
                         else if (check('/')) {
                             try {
                                 x /= analyserFacteur();
+                                String nom= "y"+Integer.toString(y);
+                                y++;
+                                Variable v = new Variable(nom,x);
+                                children.add(v);
+                                System.out.println(x);
                             }
                             catch (ArithmeticException e)
                             {
@@ -87,7 +114,6 @@ public class Expression implements IEvaluable {
                 }
 
                 double analyserFacteur(){
-                    System.out.println("hello");
                     if (check('+')) return analyserFacteur(); // plus unair
                     if (check('-')) return -analyserFacteur(); // moins unair
 
@@ -99,11 +125,9 @@ public class Expression implements IEvaluable {
                     }  else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
                         while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
                         x = Double.parseDouble(expr.substring(startPos, this.pos));
-                        String nom= "y"+Integer.toString(y);
-                        y++;
-                        Variable v = new Variable(nom,x);
-                        children.add(v);
+
                     } else if (ch >= 'a' && ch <= 'z'|| (ch >= 'A' && ch <= 'Z')) { // functions & variables
+
                         while (ch >= 'a' && ch <= 'z' || (ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'Z')) nextChar();
                         String func = expr.substring(startPos, this.pos);
                         int len=expr.length();
@@ -112,9 +136,7 @@ public class Expression implements IEvaluable {
                             Variable var=new Variable();
                             if (var.table.containsKey(func)) {
                                 x = (double) var.table.get(func);
-                                var.setNom(func);
-                                var.setValue(x);
-                                children.add(var);
+
                             } else { x=0;}
                         }else {
                             x=analyserFacteur();

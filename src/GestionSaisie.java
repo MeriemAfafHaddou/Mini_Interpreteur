@@ -13,6 +13,7 @@ public class GestionSaisie {
         this.ch = (++this.pos < str.length()) ? str.charAt(this.pos) : -1 ;
     }
     public String extraireCmd() {
+        this.pos=-1;
         charSuiv();
         while (this.ch >= 'a' && this.ch <= 'z' ) charSuiv();
         String command  =  str.substring(0, this.pos); ;
