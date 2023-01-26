@@ -6,6 +6,11 @@ public class Interpreteur {
         while (!gestion.saisir().equals("exit")){
             cmd = new ICommande() {
                 @Override
+                public void executer(String expression) {
+
+                }
+
+                @Override
                 public int hashCode() {
                     return super.hashCode();
                 }
@@ -19,7 +24,9 @@ public class Interpreteur {
             }
             else if (instruction.equals("let"))
             {
+
                 Let let = new Let() ;
+
                 let.executer(expression);//executer la commande let
             }
         }

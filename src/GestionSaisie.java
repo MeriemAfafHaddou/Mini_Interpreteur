@@ -1,21 +1,13 @@
 import java.util.Scanner;
 
 public class GestionSaisie {
-    public String ligne;
     protected int pos = -1, ch;
     protected String str ;
-    public String extraireLigne(){
-        return null;
-    }
-    public Character caractereSuivant(){
-        return null;
-    }
-
     public String saisir() {
         Scanner sc= new Scanner(System.in);
         System.out.print(">>> ");
-        this.ligne = sc.nextLine() ;
-        return this.ligne;
+        this.str = sc.nextLine() ;
+        return this.str;
     }
     private void charSuiv() {
         this.ch = (++this.pos < str.length()) ? str.charAt(this.pos) : -1 ;

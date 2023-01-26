@@ -4,7 +4,7 @@ public class Fonction implements IEvaluable {
     public String nom;
     private IEvaluable arg;
     @Override
-    public Double evaluer() {
+    public double evaluer() {
         Double value=arg.evaluer();
         switch (nom) {
             case "sqrt" : return Math.sqrt(value);

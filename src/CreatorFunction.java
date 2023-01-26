@@ -3,4 +3,7 @@ public class CreatorFunction extends Creator {
     public IEvaluable createEvaluable() {
         return new Fonction();
     }
+    public CreatorFunction(String nom, String value){
+
+    }
 }
