@@ -27,7 +27,6 @@ public class Let implements ICommande{
                     try {
                          double v=Double.parseDouble(str_valeur);
                          nom=nom.stripLeading();
-                        System.out.println(nom);
                         Varcreator = new CreatorVariable(nom,v);
                         Varcreator.evaluate();
                         System.out.println("Ok");
